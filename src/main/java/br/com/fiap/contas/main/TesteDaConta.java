@@ -6,18 +6,15 @@ import br.com.fiap.contas.modelo.ContaPoupanca;
 
 public class TesteDaConta {
     public static void main(String[] args) {
-        Conta joao = new Conta("joão", 123, "4112");
-        imprimeConta(joao);
-
-        ContaCorrente pedro = new ContaCorrente("pedro", 121, "4112");
+        Conta pedro = new ContaCorrente("pedro", 121, "4112");
         imprimeConta(pedro);
 
-        ContaPoupanca paulo = new ContaPoupanca("paulo", 126, "4112");
+        Conta paulo = new ContaPoupanca("paulo", 126, "4112");
         imprimeConta(paulo);
 
-        joao.transfere(100, paulo);
-        System.out.println(joao);
+        pedro.transfere(100, paulo);
         System.out.println(pedro);
+        System.out.println(paulo);
     }
 
     public static void imprimeConta(Conta conta) {

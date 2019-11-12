@@ -1,6 +1,6 @@
 package br.com.fiap.contas.modelo;
 
-public class Conta {
+public abstract class Conta {
     protected double saldo;
 
     private String titular;
@@ -25,9 +25,7 @@ public class Conta {
         return saldo;
     }
 
-    public String getTipo(){
-        return "Conta ";
-    }
+    public abstract String getTipo();
 
     public void transfere(double valor, Conta contaDestino) {
         this.saca(valor);
