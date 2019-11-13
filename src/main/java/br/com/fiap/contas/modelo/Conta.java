@@ -1,5 +1,7 @@
 package br.com.fiap.contas.modelo;
 
+import java.util.Objects;
+
 public abstract class Conta {
     protected double saldo;
 
@@ -49,5 +51,19 @@ public abstract class Conta {
                 ", numero=" + numero +
                 ", agencia='" + agencia + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Conta conta = (Conta) o;
+        return numero == conta.numero &&
+                Objects.equals(agencia, conta.agencia);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(numero, agencia);
     }
 }
