@@ -2,7 +2,7 @@ package br.com.fiap.contas.modelo;
 
 import java.util.Objects;
 
-public abstract class Conta {
+public abstract class Conta implements Comparable<Conta> {
     protected double saldo;
 
     private String titular;
@@ -41,6 +41,11 @@ public abstract class Conta {
     public void transfere(double valor, Conta contaDestino)  {
         this.saca(valor);
         contaDestino.deposita(valor);
+    }
+
+    @Override
+    public int compareTo(Conta outraConta) {
+        return this.titular.compareTo(outraConta.titular);
     }
 
     @Override
