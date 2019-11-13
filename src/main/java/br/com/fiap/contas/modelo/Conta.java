@@ -14,10 +14,19 @@ public abstract class Conta {
     }
 
     public void deposita(double valor) {
+        if (valor <= 0) {
+            throw new IllegalArgumentException("Você tentou depositar um valor negativo ou igual a zero");
+        }
         this.saldo += valor;
     }
 
-    public void saca(double valor) {
+    public void saca(double valor) throws SaldoInsuficienteException {
+        if (valor <= 0) {
+            throw new IllegalArgumentException("Você tentou sacar um valor negativo ou igual a zero");
+        }
+        if (valor > this.saldo) {
+            throw new SaldoInsuficienteException(valor);
+        }
         this.saldo -= valor;
     }
 
@@ -27,7 +36,7 @@ public abstract class Conta {
 
     public abstract String getTipo();
 
-    public void transfere(double valor, Conta contaDestino) {
+    public void transfere(double valor, Conta contaDestino) throws SaldoInsuficienteException {
         this.saca(valor);
         contaDestino.deposita(valor);
     }
